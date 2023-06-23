@@ -10,7 +10,6 @@ content-type: application/json
 
 ### 이메일 인증
 POST http://localhost:3000/user/email-verify?signupVerifyToken=test_token
-"email": "sunghwa@onthesys.com",
 
 ### 로그인
 POST http://localhost:3000/user/login

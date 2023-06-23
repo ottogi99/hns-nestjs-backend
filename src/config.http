@@ -1,0 +1,6 @@
+### 기본 .env 파일 사용
+GET http://localhost:3000/db-host-from-dotenv
+
+### ConfigService 모듈 사용
+GET http://localhost:3000/db-host-from-config
+

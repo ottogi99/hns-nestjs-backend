@@ -4,7 +4,7 @@ import * as uuid from 'uuid';
 import { User } from './interface/user.interface';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(private emailService: EmailService){}
 
   async createUser(email: string, password: string, username: string) {
@@ -49,7 +49,7 @@ export class UsersService {
     // TODO
     // 1. userId를 가진 유저가 존재하는지 DB에서 확인하고 없다면 에러 처리
     // 2. 조회된 데이터를 User 타입으로 응답
-    
+
     throw new Error('Method not implemented.');
   }
 
