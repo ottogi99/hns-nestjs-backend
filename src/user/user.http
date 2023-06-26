@@ -24,3 +24,32 @@ content-type: application/json
 GET http://localhost:3000/user/1
 
 
+### 유저생성 요청
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "email": "sunghwa@onthesys.com",
+  "password": "sunghwa1@",
+  "username": "sunghwa"
+}
+
+### 이메일 형식이 잘못된 경우
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "email": "@onthesys.com",
+  "password": "sunghwa1@",
+  "username": "wjdtjdghk"
+}
+
+### 패스워드 길이가 짧은 경우
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "email": "sunghwa@onthesys.com",
+  "password": "a1234",
+  "username": "wjdtjdghk"
+}
