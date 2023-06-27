@@ -29,9 +29,9 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-  "email": "sunghwa@onthesys.com",
-  "password": "sunghwa1@",
-  "username": "sunghwa"
+  "email": "haeseul@onthesys.com",
+  "password": "haeseul@",
+  "username": "haeseul"
 }
 
 ### 이메일 형식이 잘못된 경우
