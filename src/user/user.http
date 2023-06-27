@@ -29,10 +29,24 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-  "email": "haeseul@onthesys.com",
-  "password": "haeseul@",
-  "username": "haeseul"
+  "email": "sunghwa7149@gmail.com",
+  "password": "sunghwa1@",
+  "username": "sunghwa"
 }
+
+### 로그인
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+  "email": "sunghwa7149@gmail.com",
+  "password": "sunghwa1@"
+}
+
+### 회원 정보 조회
+GET http://localhost:3000/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzdW5naHdhIiwiZW1haWwiOiJzdW5naHdhNzE0OUBnbWFpbC5jb20iLCJpYXQiOjE2ODc4NTU3MzYsImV4cCI6MTY4Nzg1NTc5NiwiYXVkIjoib250aGVzeXMuY29tIiwiaXNzIjoib250aGVzeXMuY29tIn0.fno-GjGFp1tI2IA1mvAoFnJ5CJUkDrFY2RgODiGdjs4
+
 
 ### 이메일 형식이 잘못된 경우
 POST http://localhost:3000/user

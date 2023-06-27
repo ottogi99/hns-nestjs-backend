@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { CommonService } from './common/common.service';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard } from './auth/auth.guard';
 
 @Controller()
 export class AppController {

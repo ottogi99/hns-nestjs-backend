@@ -11,11 +11,11 @@ export function NotIn(property: string, validationOptions?: ValidationOptions) {
             validator: {
                 validate(value: any, args: ValidationArguments) {
                     const [relatedPropertyName] = args.constraints;
-                    console.log(args.constraints);
-                    console.log(relatedPropertyName);
+                    // console.log(args.constraints);
+                    // console.log(relatedPropertyName);
                     const relatedValue = (args.object as any)[relatedPropertyName];
-                    console.log(args.object);
-                    console.log(relatedValue);
+                    // console.log(args.object);
+                    // console.log(relatedValue);
                     return typeof value === 'string' && typeof relatedValue === 'string' && !relatedValue.includes(value);
                 }
             }
