@@ -22,6 +22,7 @@ import {
   WinstonModule,
 } from 'nest-winston';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { ExceptionModule } from './exception/exception.module';
 
 @Module({
   imports: [
@@ -48,7 +49,8 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
     UserModule, 
     CoreModule, 
     EmailModule, 
-    AuthModule,
+    AuthModule, 
+    ExceptionModule,
     // LoggerModule,
     // WinstonModule.forRoot({
     //   transports: [

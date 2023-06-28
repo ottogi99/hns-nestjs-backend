@@ -7,6 +7,7 @@ export class HttpExceptionFilter implements HttpExceptionFilter {
     const ctx = host.switchToHttp();
     const res = ctx.getResponse();
     const req = ctx.getRequest();
+    const stack = exception.stack;
 
     if (!(exception instanceof HttpException)) {  // HttpException 이 아닌 예외는 알 수 없는 에러이므로 InternalServerErrorException으로 처리되도록 합니다.
       exception = new InternalServerErrorException();
@@ -18,10 +19,11 @@ export class HttpExceptionFilter implements HttpExceptionFilter {
       timestamp: new Date(),
       url: req.url,
       response,
-    }
+      stack,
+    };
 
     // console.log(log);
-    this.logger.error(`log: ${JSON.stringify(log)}`, exception.stack)
+    this.logger.log(log);
 
     res
     .status((exception as HttpException).getStatus())
