@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -11,10 +11,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { Logger2Middleware } from './logger/logger2.middleware';
 import { UserController } from './user/user.controller';
-import { AuthGuard } from './auth/auth.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import authConfig from './config/authConfig';
 import { AuthModule } from './auth/auth.module';
+import { RolesGuard } from './guards/roles.guard';
+// import { LoggerModule } from './logger/logger.module';
+import * as winston from 'winston';
+import {
+  utilities as nestWinstoneModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 
 @Module({
   imports: [
@@ -41,15 +48,36 @@ import { AuthModule } from './auth/auth.module';
     UserModule, 
     CoreModule, 
     EmailModule, 
-    // AuthModule,
+    AuthModule,
+    // LoggerModule,
+    // WinstonModule.forRoot({
+    //   transports: [
+    //     new winston.transports.Console({  // transport 옵션 설정
+    //       level: process.env.NODE_ENV === 'production' ? 'info' : 'silly',  // 로그 레벨을 개발환경에 따라 다르도록 지정
+    //       format: winston.format.combine(
+    //         winston.format.timestamp(), // 로그를 남긴 시각을 함께 표시하도록
+    //         nestWinstoneModuleUtilities.format.nestLike('MyApp', { prettyPrint: true }),  // 어디에서 로그를 남겼는지를 구분하는 appName('MyApp')과 로그를 읽기 쉽도록 하는 옵션인 prettyPrint 옵션 설정
+    //       )
+    //     })
+    //   ]
+    // })
   ],
   controllers: [AppController],
   providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
     // {
     //   provide: APP_GUARD,
     //   useClass: AuthGuard,
     // },
-    AppService, ConfigService
+    AppService, ConfigService,
+    Logger
   ],
 })
 export class AppModule implements NestModule {

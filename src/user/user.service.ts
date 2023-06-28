@@ -7,6 +7,7 @@ import UserEntity from './entity/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { AuthService } from 'src/auth/auth.service';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { MyLogger } from 'src/logger/my.logger';
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,7 @@ export class UserService {
     private dataSource: DataSource,
     private emailService: EmailService,
     private authService: AuthService,
+    // private logger: MyLogger,
   ){}
 
   async createUser(email: string, password: string, username: string) {
@@ -148,6 +150,11 @@ export class UserService {
       username: user.username,
       email: user.email,
     }
+  }
+
+  getAllUser(): any {
+    // this.logger.debug('모든사용자');
+    return '모든 사용자';
   }
 
   delete(userId: number) {

@@ -45,7 +45,7 @@ Content-Type: application/json
 
 ### 회원 정보 조회
 GET http://localhost:3000/user/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzdW5naHdhIiwiZW1haWwiOiJzdW5naHdhNzE0OUBnbWFpbC5jb20iLCJpYXQiOjE2ODc4NTU3MzYsImV4cCI6MTY4Nzg1NTc5NiwiYXVkIjoib250aGVzeXMuY29tIiwiaXNzIjoib250aGVzeXMuY29tIn0.fno-GjGFp1tI2IA1mvAoFnJ5CJUkDrFY2RgODiGdjs4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzdW5naHdhIiwiZW1haWwiOiJzdW5naHdhNzE0OUBnbWFpbC5jb20iLCJpYXQiOjE2ODc4NTYxODIsImV4cCI6MTY4Nzg1NjI0MiwiYXVkIjoib250aGVzeXMuY29tIiwiaXNzIjoib250aGVzeXMuY29tIn0.o6h-vr0C5IOKrjJb3qyqnX_cbNaYH3TpFyyOrdlxfRo
 
 
 ### 이메일 형식이 잘못된 경우
@@ -67,3 +67,24 @@ Content-Type: application/json
   "password": "a1234",
   "username": "wjdtjdghk"
 }
+
+### AuthGuard ValidationPipe 적용
+GET http://localhost:3000/with-pipe
+
+### HandlerRolesGuard 테스트
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "sunghwa@onthesys.com"
+}
+
+### HandlerRolesGuard 테스트
+GET http://localhost:3000/user
+
+### 에러
+GET http://localhost:3000/error
+
+### 에러2
+GET http://localhost:3000/user/0
