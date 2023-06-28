@@ -11,7 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { Logger2Middleware } from './logger/logger2.middleware';
 import { UserController } from './user/user.controller';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import authConfig from './config/authConfig';
 import { AuthModule } from './auth/auth.module';
 import { RolesGuard } from './guards/roles.guard';
@@ -23,6 +23,7 @@ import {
 } from 'nest-winston';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { ExceptionModule } from './exception/exception.module';
+import { LoggingInterceptor } from './logging/logging.interceptor';
 
 @Module({
   imports: [
@@ -66,10 +67,10 @@ import { ExceptionModule } from './exception/exception.module';
   ],
   controllers: [AppController],
   providers: [
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: HttpExceptionFilter,
+    // },
     // {
     //   provide: APP_GUARD,
     //   useClass: RolesGuard,
@@ -78,7 +79,12 @@ import { ExceptionModule } from './exception/exception.module';
     //   provide: APP_GUARD,
     //   useClass: AuthGuard,
     // },
-    AppService, ConfigService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+    AppService, 
+    ConfigService,
     Logger
   ],
 })

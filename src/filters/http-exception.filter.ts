@@ -2,6 +2,7 @@ import { ArgumentsHost, Catch, HttpException, InternalServerErrorException, Logg
 
 @Catch()  // @Catch 데커레이터는 처리되지 않은 모든 예외를 잡으려고 할 때 사용합니다.
 export class HttpExceptionFilter implements HttpExceptionFilter {
+
   constructor(private logger: Logger) {}
   catch(exception: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -16,7 +17,9 @@ export class HttpExceptionFilter implements HttpExceptionFilter {
     const response = (exception as HttpException).getResponse();
 
     const log = {
-      timestamp: new Date(),
+      // timestamp: new Date().toLocaleDateString('ko-Kr', { timeZone: 'Asia/Seoul'}),
+      timestamp: new Date().toLocaleString('ko-Kr', { timeZone: 'Asia/Seoul'}),
+      message: `[${this.constructor.name}]`,
       url: req.url,
       response,
       stack,

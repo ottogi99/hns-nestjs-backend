@@ -87,4 +87,8 @@ GET http://localhost:3000/user
 GET http://localhost:3000/error
 
 ### 에러2
-GET http://localhost:3000/user/0
+GET http://localhost:3000/user/1
+
+
+### 요청보내기
+GET http://localhost:3000/user

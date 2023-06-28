@@ -1,4 +1,4 @@
-import { Headers, Body, Controller, Delete, Get, Param, Post, Query, Inject, LoggerService, InternalServerErrorException, Logger, BadRequestException, UseFilters } from '@nestjs/common';
+import { Headers, Body, Controller, Delete, Get, Param, Post, Query, Inject, LoggerService, InternalServerErrorException, Logger, BadRequestException, UseFilters, UseInterceptors } from '@nestjs/common';
 import { CreateUserDto, UserLoginDto, VerifyEmailDto } from './dto/user.dto';
 import { User } from './interface/user.interface';
 import { UserService } from './user.service';
@@ -6,6 +6,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Roles } from 'src/decorator/roles.decorator';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
+import { ErrorsInterceptor } from 'src/errors/errors.interceptor';
 // import { Logger as WinstonLogger } from 'winston';
 // import { WINSTON_MODULE_PROVIDER, WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
@@ -73,6 +74,12 @@ export class UserController {
     return await this.userService.getAllUser();
     // return '모든 사용자';
   }
+
+  // @UseInterceptors(ErrorsInterceptor)
+  // @Get('/:id')
+  // findOne(@Param('id') id: number) {
+  //   throw new InternalServerErrorException();
+  // }
 
   @Get('/:id')
   async getUser(@Headers() headers: any, @Param('id') userId: number): Promise<User> {

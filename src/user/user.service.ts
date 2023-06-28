@@ -154,7 +154,7 @@ export class UserService {
 
   getAllUser(): any {
     // this.logger.debug('모든사용자');
-    return '모든 사용자';
+    return 'This action returns all users';
   }
 
   delete(userId: number) {
