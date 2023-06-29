@@ -1,0 +1,5 @@
+### Start cron job
+POST http://localhost:3000/batch/start-sample
+
+### Stop cron job
+POST http://localhost:3000/batch/stop-sample

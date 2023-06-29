@@ -19,7 +19,7 @@ export class HttpExceptionFilter implements HttpExceptionFilter {
     const log = {
       // timestamp: new Date().toLocaleDateString('ko-Kr', { timeZone: 'Asia/Seoul'}),
       timestamp: new Date().toLocaleString('ko-Kr', { timeZone: 'Asia/Seoul'}),
-      message: `[${this.constructor.name}]`,
+      message: `[${HttpExceptionFilter.name}]`,
       url: req.url,
       response,
       stack,

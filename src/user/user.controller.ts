@@ -7,6 +7,9 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { Roles } from 'src/decorator/roles.decorator';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 import { ErrorsInterceptor } from 'src/errors/errors.interceptor';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CreateUserCommnad } from 'src/command/create-user.command';
+import { GetUserInfoQuery } from 'src/command/get-user-info.query';
 // import { Logger as WinstonLogger } from 'winston';
 // import { WINSTON_MODULE_PROVIDER, WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
@@ -20,6 +23,8 @@ export class UserController {
     // @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: WinstonLogger,
     // @Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly logger: LoggerService,
     @Inject(Logger) private readonly logger: LoggerService,
+    private commandBus: CommandBus,
+    private queryBus: QueryBus,
   ) {}
 
   @Post()
@@ -28,7 +33,12 @@ export class UserController {
     // this.printWinstonLog(dto);
     // this.printLoggerServiceLog(dto);
     const { email, password, username } = dto;
-    await this.userService.createUser(email, password, username);
+
+    const command = new CreateUserCommnad(email, password, username);
+
+    return this.commandBus.execute(command);
+
+    // await this.userService.createUser(email, password, username);
   }
 
   printLoggerServiceLog(dto: CreateUserDto) {
@@ -92,7 +102,11 @@ export class UserController {
       // throw new BadRequestException('id는 0보다 큰 정수여야 합니다.', 'id format exception');
     }
 
-    return await this.userService.getUser(userId);
+    const getUserInfoQuery = new GetUserInfoQuery(userId);
+
+    return this.queryBus.execute(getUserInfoQuery);
+
+    // return await this.userService.getUser(userId);
   }
 
   @Delete(':id')

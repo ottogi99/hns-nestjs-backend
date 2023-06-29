@@ -24,6 +24,8 @@ import {
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { ExceptionModule } from './exception/exception.module';
 import { LoggingInterceptor } from './logging/logging.interceptor';
+import { BatchModule } from './batch/batch.module';
+import { HealthCheckModule } from './health-check/health-check.module';
 
 @Module({
   imports: [
@@ -51,7 +53,9 @@ import { LoggingInterceptor } from './logging/logging.interceptor';
     CoreModule, 
     EmailModule, 
     AuthModule, 
-    ExceptionModule,
+    ExceptionModule, 
+    BatchModule, 
+    HealthCheckModule,
     // LoggerModule,
     // WinstonModule.forRoot({
     //   transports: [
