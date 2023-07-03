@@ -3,7 +3,7 @@ import { EmailService } from 'src/email/email.service';
 import * as uuid from 'uuid';
 import { User } from './interface/user.interface';
 import { InjectRepository } from '@nestjs/typeorm';
-import UserEntity from './entity/user.entity';
+import UserEntity from './infra/db/entity/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { AuthService } from 'src/auth/auth.service';
 import { AuthGuard } from 'src/auth/auth.guard';

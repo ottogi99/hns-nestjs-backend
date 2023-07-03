@@ -10,7 +10,7 @@ import { validationSchema } from './config/validationSchema';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { Logger2Middleware } from './logger/logger2.middleware';
-import { UserController } from './user/user.controller';
+import { UserController } from './user/interface/user.controller';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import authConfig from './config/authConfig';
 import { AuthModule } from './auth/auth.module';

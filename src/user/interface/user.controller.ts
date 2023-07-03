@@ -1,15 +1,15 @@
 import { Headers, Body, Controller, Delete, Get, Param, Post, Query, Inject, LoggerService, InternalServerErrorException, Logger, BadRequestException, UseFilters, UseInterceptors } from '@nestjs/common';
 import { CreateUserDto, UserLoginDto, VerifyEmailDto } from './dto/user.dto';
-import { User } from './interface/user.interface';
-import { UserService } from './user.service';
+import { User } from './user.interface';
+import { UserService } from '../user.service';
 import { AuthService } from 'src/auth/auth.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Roles } from 'src/decorator/roles.decorator';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 import { ErrorsInterceptor } from 'src/errors/errors.interceptor';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateUserCommnad } from 'src/command/create-user.command';
-import { GetUserInfoQuery } from 'src/command/get-user-info.query';
+import { CreateUserCommnad } from 'src/user/application/command/create-user.command';
+import { GetUserInfoQuery } from 'src/user/application/query/get-user-info.query';
 // import { Logger as WinstonLogger } from 'winston';
 // import { WINSTON_MODULE_PROVIDER, WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
